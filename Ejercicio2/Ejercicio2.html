@@ -1,0 +1,58 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Dinámica</title>
+    <style>
+        .tabladinamica {
+            border-collapse: collapse;
+            width: 100%;
+            border: none;
+        }
+
+        .tabladinamica tr, .tabladinamica td {
+            padding: 8px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<label for="filas">Número de filas:</label>
+<input type="number" id="filas">
+
+<label for="columnas">Número de columnas:</label>
+<input type="number" id="columnas">
+
+<button onclick="crearTabla()">Crear Tabla</button>
+<button onclick="BorrarTabla()">Borrar Tabla</button>
+
+<div class="tabladinamica"></div>
+</body>
+<script>
+    function crearTabla() {
+        var filas = document.getElementById('filas').value;
+        var columnas = document.getElementById('columnas').value;
+        var tablaHTML = '<table class="tabladinamica">';
+
+        for (var i = 0; i < filas; i++) {
+            tablaHTML += '<tr>';
+            for (var j = 0; j < columnas; j++) {
+                tablaHTML += '<td></td>';
+            }
+            tablaHTML += '</tr>';
+        }
+
+        tablaHTML += '</table>';
+        document.querySelector(".tabladinamica").innerHTML = tablaHTML;
+    }
+    function BorrarTabla(){
+        var tablaHTML ='<table class="tabladinamica"></table>'
+        var filas = document.getElementById('filas').value="";
+        var columnas = document.getElementById('columnas').value="";
+        document.querySelector(".tabladinamica").innerHTML = tablaHTML;
+        alert('La tabla se ha borrado Correctamente')
+
+    }
+</script>
+</html>
