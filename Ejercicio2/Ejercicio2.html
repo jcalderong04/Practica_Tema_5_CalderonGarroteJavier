@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -27,8 +28,18 @@
 <button onclick="crearTabla()">Crear Tabla</button>
 <button onclick="BorrarTabla()">Borrar Tabla</button>
 
+<label for="filasEliminar">Número de filas a eliminar:</label>
+<input type="number" id="filasEliminar">
+
+<button onclick="borrarFilas()">Borrar Filas</button>
+
+<label for="columnasEliminar">Número de columnas a eliminar:</label>
+<input type="number" id="columnasEliminar">
+
+<button onclick="borrarColumnas()">Borrar Columnas</button>
+
 <div class="tabladinamica"></div>
-</body>
+
 <script>
     function crearTabla() {
         var filas = document.getElementById('filas').value;
@@ -46,13 +57,45 @@
         tablaHTML += '</table>';
         document.querySelector(".tabladinamica").innerHTML = tablaHTML;
     }
-    function BorrarTabla(){
-        var tablaHTML ='<table class="tabladinamica"></table>'
-        var filas = document.getElementById('filas').value="";
-        var columnas = document.getElementById('columnas').value="";
-        document.querySelector(".tabladinamica").innerHTML = tablaHTML;
-        alert('La tabla se ha borrado Correctamente')
 
+    function BorrarTabla() {
+        var filasInput = document.getElementById('filas');
+        var columnasInput = document.getElementById('columnas');
+
+        filasInput.value = "";
+        columnasInput.value = "";
+
+        // Get the existing table element
+        var existingTable = document.querySelector(".tabladinamica table");
+
+        if (existingTable) {
+            existingTable.innerHTML = ''; // Clear the table content
+            alert('La tabla se ha borrado correctamente');
+        } else {
+            alert('No hay tabla para borrar');
+        }
+    }
+
+    function borrarFilas() {
+        var filasEliminar = document.getElementById('filasEliminar').value;
+        var table = document.querySelector(".tabladinamica table");
+
+        for (var i = 0; i < filasEliminar; i++) {
+            table.deleteRow(0); // Delete the first row each time
+        }
+    }
+
+    function borrarColumnas() {
+        var columnasEliminar = document.getElementById('columnasEliminar').value;
+        var rows = document.querySelectorAll(".tabladinamica tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            for (var j = 0; j < columnasEliminar; j++) {
+                rows[i].deleteCell(0); // Delete the first cell each time
+            }
+        }
     }
 </script>
+
+</body>
 </html>
