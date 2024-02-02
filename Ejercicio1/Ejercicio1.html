@@ -1,11 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--1.- En esta página existen tres bloques ocultos. Debes crear un evento de teclado para que actúe cuando el usuario pulsa una etcla.
+si pulsa la tecla 1 se abre el bloque con id ficha1, si pulsa 2 se abre el bloque ficha2 y si 3 se abre el de ficha3.-->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <style>
+    .oculto {
+      display: none;
+    }
+    .visible {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    
+<div class="oculto" id="ficha1">Hola, soy el bloque 1</div>
+<div class="oculto" id="ficha2">Hola, soy el bloque 2</div>
+<div class="oculto" id="ficha3">Hola, soy el bloque 3</div>
+
+<script>
+  document.addEventListener('keydown', function (event) {
+    var DIV1 = document.getElementById("ficha1");
+    var DIV2 = document.getElementById("ficha2");
+    var DIV3 = document.getElementById("ficha3");
+
+    DIV1.classList.remove('visible');
+    DIV2.classList.remove('visible');
+    DIV3.classList.remove('visible');
+
+    if (event.key === '1') {
+      DIV1.classList.add('visible');
+    } else if (event.key === '2') {
+      DIV2.classList.add('visible');
+    } else if (event.key === '3') {
+      DIV3.classList.add('visible');
+    }
+  });
+</script>
 </body>
-</html>
